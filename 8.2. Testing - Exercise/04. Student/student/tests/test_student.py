@@ -4,7 +4,7 @@ from project.student import Student
 
 class StudentTests(TestCase):
     def setUp(self):
-        self.student = Student("Goshko", {"risuvane": ["guz", "laina"]})
+        self.student = Student("Goshko", {"risuvane": ["cvete", "vaza"]})
 
     def test_input_if_courses_is_none(self):
         self.student = Student("Goshko")
@@ -13,23 +13,23 @@ class StudentTests(TestCase):
 
     def test_input_if_courses_is_not_none(self):
         self.assertEqual("Goshko", self.student.name)
-        self.assertEqual({"risuvane": ["guz", "laina"]}, self.student.courses)
+        self.assertEqual({"risuvane": ["cvete", "vaza"]}, self.student.courses)
 
     def test_enroll_when_course_is_already_added_expect_notes_to_be_added(self):
         self.student.enroll("risuvane", ["kelepir"])
-        self.assertEqual({"risuvane": ["guz", "laina", "kelepir"]}, self.student.courses)
+        self.assertEqual({"risuvane": ["cvete", "vaza", "kelepir"]}, self.student.courses)
 
     def test_enroll_course_not_in_keys_and_add_course_notes_is_empty_expect_course_added_with_notes(self):
         self.student.enroll("shpaklovane", ["kelepir"])
-        self.assertEqual({"risuvane": ["guz", "laina"], "shpaklovane": ["kelepir"]}, self.student.courses)
+        self.assertEqual({"risuvane": ["cvete", "vaza"], "shpaklovane": ["kelepir"]}, self.student.courses)
 
     def test_enroll_course_not_in_keys_and_add_course_notes_is_positive_expect_course_added_with_notes(self):
         self.student.enroll("shpaklovane", ["kelepir"], "Y")
-        self.assertEqual({"risuvane": ["guz", "laina"], "shpaklovane": ["kelepir"]}, self.student.courses)
+        self.assertEqual({"risuvane": ["cvete", "vaza"], "shpaklovane": ["kelepir"]}, self.student.courses)
 
     def test_enroll_course_not_in_keys_and_add_course_notes_is_negative_expect_course_added_with_notes(self):
         self.student.enroll("shpaklovane", ["kelepir"], "N")
-        self.assertEqual({"risuvane": ["guz", "laina"], "shpaklovane": []}, self.student.courses)
+        self.assertEqual({"risuvane": ["cvete", "vaza"], "shpaklovane": []}, self.student.courses)
 
     def test_add_notes_if_course_not_exist_expect_raise_error(self):
         with self.assertRaises(Exception) as ex:
